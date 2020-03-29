@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Chatbot - Professor'),
+        title: Text('Chatbot - Cartório'),
       ),
       body: Column(
         children: <Widget>[
@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   Future _dialogFlowRequest({String query}) async {
     // Adiciona uma mensagem temporária na lista
     _addMessage(
-        name: 'Professor',
+        name: 'Cartorário',
         text: 'Escrevendo...',
         type: ChatMessageType.received);
 
@@ -69,7 +69,7 @@ class _HomePageState extends State<HomePage> {
 
     // adiciona a mensagem com a resposta do DialogFlow
     _addMessage(
-        name: 'Professor',
+        name: 'Cartorário',
         text: response.getMessage() ?? '',
         type: ChatMessageType.received);
   }
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
   // Envia uma mensagem com o padrão a direita
   void _sendMessage({String text}) {
     _controllerText.clear();
-    _addMessage(name: 'Kleber Andrade', text: text, type: ChatMessageType.sent);
+    _addMessage(name: 'Usuário', text: text, type: ChatMessageType.sent);
   }
 
   // Adiciona uma mensagem na lista de mensagens
