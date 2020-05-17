@@ -1,5 +1,8 @@
-
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:tcc_regulariza/models/user.dart';
+import 'package:tcc_regulariza/service/auth.dart';
+import 'package:tcc_regulariza/views/login.dart';
 //import 'package:flushbar/flushbar.dart';
 //import 'package:projeto_teste/services/auth.dart';
 //import 'package:projeto_teste/models/user.dart';
@@ -47,6 +50,7 @@ class _CadastroState extends State<Cadastro> {
               _showSenhaTextField(),
               _showConfirmarsenhaTextField(),
               _showTelefoneTextField(),
+              _showSignUpButton(),
         
             ],
           ),
@@ -55,7 +59,7 @@ class _CadastroState extends State<Cadastro> {
     );
  
   }
-
+// Componentes ppara a criação da tela de cadastro 
   Widget _showNomeTextField(){
       return TextField(
        controller: _nomeController,
@@ -71,11 +75,12 @@ class _CadastroState extends State<Cadastro> {
           FocusScope.of(context).requestFocus(_emailFocusNode),
     );
   }
-
+// Tratamento de numeros e letras e quantidade especifica.
   Widget _showRgTextField(){
       return TextField(
        controller: _rgController,
       keyboardType: TextInputType.text,
+      maxLength:9,
       decoration: InputDecoration(
         hintText: 'Digite seu RG',
         prefixIcon: Icon(Icons.description),
@@ -88,11 +93,12 @@ class _CadastroState extends State<Cadastro> {
     );
 
   }
-
+ // Tratamento de apenas numeros e quantidade de nº determinado.
   Widget _showCpfTextField(){
       return TextField(
        controller: _cpfController,
-      keyboardType: TextInputType.text,
+      keyboardType: TextInputType.number,
+      maxLength: 11,
       decoration: InputDecoration(
         hintText: 'Digite seu CPF',
         prefixIcon: Icon(Icons.description),
@@ -162,6 +168,46 @@ class _CadastroState extends State<Cadastro> {
       ),
       textInputAction: TextInputAction.next,
       focusNode: _confirmarsenhaFocusNode,
+    );
+  }
+
+ Future _signUp() async {
+    final email = _emailController.text;
+    final password = _senhaController.text;
+    await Auth.signUp(email, password)
+        .then(_onResultSignUpSuccess)
+        .catchError((error) {
+      Flushbar(
+        title: 'Erro',
+        message: error.toString(),
+        duration: Duration(seconds: 3),
+      )..show(context);
+    });
+  }
+
+void _onResultSignUpSuccess(String userId) {
+    final email = _emailController.text;
+    final name = _nomeController.text;
+    final phone = _telefoneController.text;
+    final cpf = _cpfController.text;
+    final rg = _rgController.text;
+    final user = User(userId: userId, name: name, email: email, phone: phone, cpf: cpf, rg: rg);
+    Auth.addUser(user).then(_onResultAddUser);
+  }
+
+   void _onResultAddUser(result) {
+    Flushbar(
+      title: 'Novo usuário',
+      message: 'Usuário registrado com sucesso!',
+      duration: Duration(seconds: 2),
+    )..show(context);
+    Navigator.of(context).pushReplacementNamed(Login.routeName);
+  }
+// criação do botão
+  Widget _showSignUpButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 32.0),
+      child: RaisedButton(child: Text('Cadastrar'), onPressed: _signUp),
     );
   }
 }

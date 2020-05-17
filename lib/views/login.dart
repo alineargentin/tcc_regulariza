@@ -2,8 +2,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/service/auth.dart';
-import 'package:tcc_regulariza/views/perfil.dart';
-
+import 'package:tcc_regulariza/views/home_page.dart';
 import 'cadastro.dart';
 
 class Login extends StatefulWidget {
@@ -88,7 +87,7 @@ class _LoginState extends State<Login> {
     final user = await Auth.getUser(userId);
     await Auth.storeUserLocal(user);
 
-    Navigator.pushReplacementNamed(context, Perfil.routeName);
+    Navigator.of(context).pushReplacementNamed(HomePage.routeName);
   }
 
   Widget _showSignInButton() {

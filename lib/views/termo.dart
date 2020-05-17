@@ -24,6 +24,6 @@ class _TermoState extends State<Termo> {
   }
 
   Widget _buildBody() {
-    return Center(child: Text('Use o Aplicativo Carteira Virtual com responsabilidade'));
+    return Center(child: Text('Em desenvolvimento'));
   }
 }

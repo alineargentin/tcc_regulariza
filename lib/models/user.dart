@@ -15,7 +15,7 @@ class User {
     this.email,
     this.cpf,
     this.phone,
-    this.saldo,
+    this.saldo, String rg, String password,
   });
 
    String getInitials() {

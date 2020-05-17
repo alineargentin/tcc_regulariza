@@ -32,7 +32,8 @@ dependencies:
   cloud_firestore: ^0.12.10
   firebase_storage: ^3.0.8
   shared_preferences: ^0.5.3+4
-  flushbar: ^1.9.1
+  #flushbar: ^1.9.1
+  flushbar: ^1.10.4
   #datetime_picker_formfield: ^0.4.3
   #image_picker: ^0.6.1+11
   #cached_network_image: ^1.1.3

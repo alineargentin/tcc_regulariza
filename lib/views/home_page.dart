@@ -5,8 +5,10 @@ import 'package:flutter_dialogflow/dialogflow_v2.dart';
 
 
 class HomePage extends StatefulWidget {
+  static const String routeName = '/home';
   @override
   _HomePageState createState() => _HomePageState();
+
 }
 
 class _HomePageState extends State<HomePage> {

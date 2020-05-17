@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:tcc_regulariza/models/chat_message.dart';
 
 class ChatMessageListItem extends StatelessWidget {
+  //static const String routeName = '/chat';
   final ChatMessage chatMessage;
 
   ChatMessageListItem({this.chatMessage});

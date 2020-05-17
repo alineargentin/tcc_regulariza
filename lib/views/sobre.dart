@@ -24,6 +24,6 @@ class _SobreState extends State<Sobre> {
   }
 
   Widget _buildBody() {
-    return Center(child: Text('O aplicativo Carteira Virtual foi criado para facilitar pagamentos'));
+    return Center(child: Text('O aplicativo Regulariza tem o intuito de tirar suas duvidas dos diferentes tipos de documentação existentes dos serviços de cartórios.'));
   }
 }
