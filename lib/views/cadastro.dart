@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/views/login.dart';
-//import 'package:flushbar/flushbar.dart';
-//import 'package:projeto_teste/services/auth.dart';
-//import 'package:projeto_teste/models/user.dart';
-//import 'package:projeto_teste/views/login.dart';
+
 
 class Cadastro extends StatefulWidget {
   static const String routeName = '/cadastro';
@@ -17,8 +14,8 @@ class Cadastro extends StatefulWidget {
 
 class _CadastroState extends State<Cadastro> {
   final _nomeController = new TextEditingController();
-  final _rgController = new TextEditingController();
-  final _cpfController = new TextEditingController();
+  //final _rgController = new TextEditingController();
+  //final _cpfController = new TextEditingController();
   final _emailController = new TextEditingController();
   final _senhaController = new TextEditingController();
   final _confirmarsenhaController = new TextEditingController();
@@ -27,8 +24,8 @@ class _CadastroState extends State<Cadastro> {
   
 
   final _nomeFocusNode = new FocusNode();
-  final _rgFocusNode = new FocusNode();
-  final _cpfFocusNode = new FocusNode();
+  //final _rgFocusNode = new FocusNode();
+  //final _cpfFocusNode = new FocusNode();
   final _emailFocusNode = new FocusNode();
   final _senhaFocusNode = new FocusNode();
   final _confirmarsenhaFocusNode = new FocusNode();
@@ -44,8 +41,8 @@ class _CadastroState extends State<Cadastro> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               _showNomeTextField(),
-              _showRgTextField(),
-              _showCpfTextField(),
+              //_showRgTextField(),
+              //_showCpfTextField(),
               _showEmailTextField(),
               _showSenhaTextField(),
               _showConfirmarsenhaTextField(),
@@ -76,7 +73,7 @@ class _CadastroState extends State<Cadastro> {
     );
   }
 // Tratamento de numeros e letras e quantidade especifica.
-  Widget _showRgTextField(){
+  /*Widget _showRgTextField(){
       return TextField(
        controller: _rgController,
       keyboardType: TextInputType.text,
@@ -110,7 +107,7 @@ class _CadastroState extends State<Cadastro> {
           FocusScope.of(context).requestFocus(_emailFocusNode),
     );
 }
-
+*/
  Widget _showEmailTextField() {
      return TextFormField(
       controller: _emailController,
@@ -189,9 +186,9 @@ void _onResultSignUpSuccess(String userId) {
     final email = _emailController.text;
     final name = _nomeController.text;
     final phone = _telefoneController.text;
-    final cpf = _cpfController.text;
-    final rg = _rgController.text;
-    final user = User(userId: userId, name: name, email: email, phone: phone, cpf: cpf, rg: rg);
+    //final cpf = _cpfController.text;
+    //final rg = _rgController.text;
+    final user = User(userId: userId, name: name, email: email, phone: phone);
     Auth.addUser(user).then(_onResultAddUser);
   }
 
