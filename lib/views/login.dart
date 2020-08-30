@@ -2,6 +2,7 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/service/auth.dart';
+import 'package:tcc_regulariza/views/forgot_password.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
 import 'cadastro.dart';
 
@@ -27,6 +28,7 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               _showEmailTextField(),
               _showPasswordTextField(),
+              _showForgotPasswordButton(),
               _showSignInButton(),
               _showSignUpButton(),
             ],
@@ -68,16 +70,26 @@ class _LoginState extends State<Login> {
     );
   }
 
+  Widget _showForgotPasswordButton() {
+    return  RaisedButton(child: Text('Esqueci minha senha'), onPressed: _forgotPassword);
+  }
+
+  void _forgotPassword() {
+    // usa Navigator.pushNamed para poder voltar à tela de login ao clicar no botão físico do celular
+    Navigator.pushNamed(context, ForgotPassword.routeName);
+  }
+
   Future<void> _signIn() async {
     final email = _emailController.text;
     final password = _passwordController.text;
     await Auth.signIn(email, password)
-        .then(_onSignInSuccess)
+        .then((_onSignInSuccess))
         .catchError((error) {
+      // tratativa de erro de login
       print('Caught error: $error');
       Flushbar(
         title: 'Erro',
-        message: error.toString(),
+        message: 'Login ou senha inválidos',
         duration: Duration(seconds: 3),
       )..show(context);
     });
@@ -87,7 +99,8 @@ class _LoginState extends State<Login> {
     final user = await Auth.getUser(userId);
     await Auth.storeUserLocal(user);
 
-    Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+    // usa pushReplacementNamed para poder voltar à tela de login ao clicar no botão físico do celular
+    Navigator.pushReplacementNamed(context, HomePage.routeName);
   }
 
   Widget _showSignInButton() {
@@ -98,11 +111,11 @@ class _LoginState extends State<Login> {
   }
 
   void _signUp() {
-    Navigator.of(context).pushReplacementNamed(Cadastro.routeName);
+    // usa Navigator.pushNamed para poder voltar à tela de login ao clicar no botão físico do celular
+    Navigator.pushNamed(context, Cadastro.routeName);
   }
 
   Widget _showSignUpButton() {
     return RaisedButton(child: Text('Cadastre-se'), onPressed: _signUp);
   }
-
 }

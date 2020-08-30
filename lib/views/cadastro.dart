@@ -4,7 +4,6 @@ import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/views/login.dart';
 
-
 class Cadastro extends StatefulWidget {
   static const String routeName = '/cadastro';
 
@@ -21,8 +20,6 @@ class _CadastroState extends State<Cadastro> {
   final _confirmarsenhaController = new TextEditingController();
   final _telefoneController = new TextEditingController();
 
-  
-
   final _nomeFocusNode = new FocusNode();
   //final _rgFocusNode = new FocusNode();
   //final _cpfFocusNode = new FocusNode();
@@ -31,7 +28,7 @@ class _CadastroState extends State<Cadastro> {
   final _confirmarsenhaFocusNode = new FocusNode();
   final _telefoneFocusNode = new FocusNode();
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
@@ -48,18 +45,17 @@ class _CadastroState extends State<Cadastro> {
               _showConfirmarsenhaTextField(),
               _showTelefoneTextField(),
               _showSignUpButton(),
-        
             ],
           ),
         ),
       ),
     );
- 
   }
-// Componentes ppara a criação da tela de cadastro 
-  Widget _showNomeTextField(){
-      return TextField(
-       controller: _nomeController,
+
+  // Componentes para a criação da tela de cadastro
+  Widget _showNomeTextField() {
+    return TextField(
+      controller: _nomeController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
         hintText: 'Digite seu nome',
@@ -72,6 +68,7 @@ class _CadastroState extends State<Cadastro> {
           FocusScope.of(context).requestFocus(_emailFocusNode),
     );
   }
+
 // Tratamento de numeros e letras e quantidade especifica.
   /*Widget _showRgTextField(){
       return TextField(
@@ -108,8 +105,8 @@ class _CadastroState extends State<Cadastro> {
     );
 }
 */
- Widget _showEmailTextField() {
-     return TextFormField(
+  Widget _showEmailTextField() {
+    return TextFormField(
       controller: _emailController,
       keyboardType: TextInputType.emailAddress,
       decoration: InputDecoration(
@@ -119,11 +116,12 @@ class _CadastroState extends State<Cadastro> {
       textInputAction: TextInputAction.next,
       focusNode: _emailFocusNode,
       onEditingComplete: () =>
+          // ao terminar de editar, move o foco para o próximo campo
           FocusScope.of(context).requestFocus(_senhaFocusNode),
     );
   }
 
-    Widget _showSenhaTextField() {
+  Widget _showSenhaTextField() {
     return TextFormField(
       controller: _senhaController,
       keyboardType: TextInputType.text,
@@ -140,23 +138,22 @@ class _CadastroState extends State<Cadastro> {
   }
 
   Widget _showConfirmarsenhaTextField() {
-     return TextFormField(
-      controller: _confirmarsenhaController,
-      keyboardType: TextInputType.text,
-      obscureText: true,
-      decoration: InputDecoration(
-        hintText: 'Confirmar sua senha',
-        prefixIcon: Icon(Icons.vpn_key),
-      ),
-      textInputAction: TextInputAction.next,
-      focusNode: _confirmarsenhaFocusNode,
-       onEditingComplete: () =>
-         FocusScope.of(context).requestFocus(_telefoneFocusNode)
-    );
+    return TextFormField(
+        controller: _confirmarsenhaController,
+        keyboardType: TextInputType.text,
+        obscureText: true,
+        decoration: InputDecoration(
+          hintText: 'Confirmar sua senha',
+          prefixIcon: Icon(Icons.vpn_key),
+        ),
+        textInputAction: TextInputAction.next,
+        focusNode: _confirmarsenhaFocusNode,
+        onEditingComplete: () =>
+            FocusScope.of(context).requestFocus(_telefoneFocusNode));
   }
 
   Widget _showTelefoneTextField() {
-     return TextFormField(
+    return TextFormField(
       controller: _telefoneController,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
@@ -164,11 +161,11 @@ class _CadastroState extends State<Cadastro> {
         prefixIcon: Icon(Icons.phone),
       ),
       textInputAction: TextInputAction.next,
-      focusNode: _confirmarsenhaFocusNode,
+      focusNode: _telefoneFocusNode,
     );
   }
 
- Future _signUp() async {
+  Future _signUp() async {
     final email = _emailController.text;
     final password = _senhaController.text;
     await Auth.signUp(email, password)
@@ -176,13 +173,13 @@ class _CadastroState extends State<Cadastro> {
         .catchError((error) {
       Flushbar(
         title: 'Erro',
-        message: error.toString(),
+        message: error.message,
         duration: Duration(seconds: 3),
       )..show(context);
     });
   }
 
-void _onResultSignUpSuccess(String userId) {
+  void _onResultSignUpSuccess(String userId) {
     final email = _emailController.text;
     final name = _nomeController.text;
     final phone = _telefoneController.text;
@@ -192,7 +189,7 @@ void _onResultSignUpSuccess(String userId) {
     Auth.addUser(user).then(_onResultAddUser);
   }
 
-   void _onResultAddUser(result) {
+  void _onResultAddUser(result) {
     Flushbar(
       title: 'Novo usuário',
       message: 'Usuário registrado com sucesso!',
@@ -200,6 +197,7 @@ void _onResultSignUpSuccess(String userId) {
     )..show(context);
     Navigator.of(context).pushReplacementNamed(Login.routeName);
   }
+
 // criação do botão
   Widget _showSignUpButton() {
     return Padding(
