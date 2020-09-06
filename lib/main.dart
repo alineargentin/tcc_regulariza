@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Regulazira',
-      theme: new ThemeData(primarySwatch: Colors.green),
+      theme: new ThemeData(primarySwatch: Colors.amber),
       debugShowCheckedModeBanner: false,
       home: Login(),
       initialRoute: '/',

@@ -28,8 +28,8 @@ class _LoginState extends State<Login> {
             children: <Widget>[
               _showEmailTextField(),
               _showPasswordTextField(),
-              _showForgotPasswordButton(),
               _showSignInButton(),
+              _showForgotPasswordButton(),
               _showSignUpButton(),
             ],
           ),
@@ -71,7 +71,12 @@ class _LoginState extends State<Login> {
   }
 
   Widget _showForgotPasswordButton() {
-    return  RaisedButton(child: Text('Esqueci minha senha'), onPressed: _forgotPassword);
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: RaisedButton(
+            color: Colors.amberAccent,
+            child: Text('Esqueci minha senha'),
+            onPressed: _forgotPassword));
   }
 
   void _forgotPassword() {
@@ -105,8 +110,9 @@ class _LoginState extends State<Login> {
 
   Widget _showSignInButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32.0),
-      child: RaisedButton(child: Text('Login'), onPressed: _signIn),
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: RaisedButton(
+          color: Colors.amber, child: Text('Login'), onPressed: _signIn),
     );
   }
 
@@ -116,6 +122,11 @@ class _LoginState extends State<Login> {
   }
 
   Widget _showSignUpButton() {
-    return RaisedButton(child: Text('Cadastre-se'), onPressed: _signUp);
+    return Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12.0),
+        child: RaisedButton(
+            color: Colors.amberAccent,
+            child: Text('Cadastre-se'),
+            onPressed: _signUp));
   }
 }

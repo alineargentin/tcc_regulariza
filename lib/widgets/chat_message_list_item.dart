@@ -20,7 +20,7 @@ class ChatMessageListItem extends StatelessWidget {
     // DESAFIO 1 - Melhorar a exibição das mensagens, aplicando um Clippy no estilo Whatsapp
     return Message(
       child: Container(
-        color: Colors.greenAccent,
+        color: Colors.yellow,
         width: 100.0,
         height: 100.0,
         child: Center(
@@ -52,7 +52,7 @@ class ChatMessageListItem extends StatelessWidget {
     // DESAFIO 1 - Melhorar a exibição das mensagens, aplicando um Clippy no estilo Whatsapp
     return Message(
       child: Container(
-        color: Colors.lightBlueAccent,
+        color: Colors.amberAccent,
         width: 100.0,
         height: 100.0,
         child: Center(

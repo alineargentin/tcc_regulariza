@@ -1,5 +1,6 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/views/login.dart';
@@ -11,6 +12,7 @@ class Cadastro extends StatefulWidget {
   _CadastroState createState() => _CadastroState();
 }
 
+
 class _CadastroState extends State<Cadastro> {
   final _nomeController = new TextEditingController();
   //final _rgController = new TextEditingController();
@@ -18,7 +20,7 @@ class _CadastroState extends State<Cadastro> {
   final _emailController = new TextEditingController();
   final _senhaController = new TextEditingController();
   final _confirmarsenhaController = new TextEditingController();
-  final _telefoneController = new TextEditingController();
+  final _telefoneController = new MaskedTextController(mask: '(00)00000-0000');
 
   final _nomeFocusNode = new FocusNode();
   //final _rgFocusNode = new FocusNode();

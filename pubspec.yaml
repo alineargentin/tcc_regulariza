@@ -25,6 +25,7 @@ dependencies:
   firebase_analytics: ^5.0.2
   flutter_launcher_icons: ^0.7.3
   flutter_dialogflow: ^0.1.0
+  flutter_masked_text: ^0.8.0
   #splashscreen: ^1.2.0
   #intl: ^0.15.8
   #intl_translation: ^0.17.7
