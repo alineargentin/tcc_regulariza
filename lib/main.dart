@@ -4,6 +4,8 @@ import 'package:tcc_regulariza/views/forgot_password.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
 import 'package:tcc_regulariza/views/login.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
+import 'package:tcc_regulariza/views/splash.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -16,9 +18,10 @@ class MyApp extends StatelessWidget {
       title: 'Regulazira',
       theme: new ThemeData(primarySwatch: Colors.amber),
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: SplashScreen(),
       initialRoute: '/',
       routes: <String, WidgetBuilder>{
+        Login.routeName:(context)=> new Login(),
         Cadastro.routeName: (context) => new Cadastro(),
         Perfil.routeName: (context) => new Perfil(),
         HomePage.routeName: (context) => new HomePage(),
