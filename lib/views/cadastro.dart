@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
-import 'package:tcc_regulariza/views/login.dart';
+import 'package:tcc_regulariza/views/home_page.dart';
 
 class Cadastro extends StatefulWidget {
   static const String routeName = '/cadastro';
@@ -11,7 +11,6 @@ class Cadastro extends StatefulWidget {
   @override
   _CadastroState createState() => _CadastroState();
 }
-
 
 class _CadastroState extends State<Cadastro> {
   final _nomeController = new TextEditingController();
@@ -197,7 +196,7 @@ class _CadastroState extends State<Cadastro> {
       message: 'Usuário registrado com sucesso!',
       duration: Duration(seconds: 2),
     )..show(context);
-    Navigator.of(context).pushReplacementNamed(Login.routeName);
+    Navigator.of(context).pushReplacementNamed(HomePage.routeName);
   }
 
 // criação do botão

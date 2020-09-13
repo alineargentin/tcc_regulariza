@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter/services.dart';
 import 'package:tcc_regulariza/views/login.dart';
+import 'package:tcc_regulariza/service/auth.dart';
+
+import 'home_page.dart';
 
 // tela de Inicio
 class SplashScreen extends StatefulWidget {
@@ -14,8 +17,13 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     SystemChrome.setEnabledSystemUIOverlays([]);
-    Future.delayed(Duration(seconds: 2)).then((_) {
-      Navigator.pushNamed(context, Login.routeName);
+    Future.delayed(Duration(seconds: 2)).then((_) async {
+      var userLocal = await Auth.getUserLocal();
+      if (userLocal == null) {
+        Navigator.pushReplacementNamed(context, Login.routeName);
+      } else {
+        Navigator.pushReplacementNamed(context, HomePage.routeName);
+      }
     });
   }
 
