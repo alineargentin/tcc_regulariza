@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/models/chat_message.dart';
 import 'package:tcc_regulariza/widgets/chat_message_list_item.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
+import 'package:tcc_regulariza/widgets/custom_drawer.dart';
 
 
 class HomePage extends StatefulWidget {
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: new AppBar(
         title: Text('Chatbot - Cartório'),
       ),

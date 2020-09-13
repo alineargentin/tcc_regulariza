@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/utils/common.dart';
+import 'package:tcc_regulariza/views/home_page.dart';
 import 'package:tcc_regulariza/views/login.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
@@ -17,7 +18,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   @override
   void initState() {
-   Auth.getUserLocal().then(_onGetUserLocalSuccess);
+    Auth.getUserLocal().then(_onGetUserLocalSuccess);
     super.initState();
   }
 
@@ -39,6 +40,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushReplacementNamed(Perfil.routeName);
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text('Chatbot'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed(HomePage.routeName);
             },
           ),
           Divider(),

@@ -10,7 +10,7 @@ class Perfil extends StatefulWidget {
 }
 
 class _PerfilState extends State<Perfil> {
-User _currentUser;
+  User _currentUser;
 
   @override
   void initState() {
@@ -38,21 +38,15 @@ User _currentUser;
     );
   }
 
-   Widget _buildBody() {
-    return new ListView.builder(itemBuilder: (BuildContext context, int index) {
-        return new Card(
-          child: new Column(children: <Widget>[
-            new Text(_currentUser.name),
-            new Text(_currentUser.email),
-            new Text(_currentUser.cpf),
-            new Text(_currentUser.phone),
-            new Text(_currentUser.saldo)],
-          ),
-        );
-      },
-);
+  Widget _buildBody() {
+    return new Card(
+      child: new Column(
+        children: <Widget>[
+          new Text(_currentUser.name),
+          new Text(_currentUser.email),
+          new Text(_currentUser.phone)
+        ],
+      ),
+    );
   }
-
-
-  
 }

@@ -9,7 +9,7 @@ class Common {
         [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   }
 
-  static Future<bool> showQuitDialog(context) async {
+  static Future<bool> showQuitDialog(context) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -19,7 +19,7 @@ class Common {
           actions: <Widget>[
             FlatButton(
               child: Text("Sim"),
-              onPressed: () {
+              onPressed: () async {
                 Auth.signOut();
                 Navigator.pushReplacementNamed(context, Login.routeName);
               },
