@@ -6,10 +6,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tcc_regulariza/models/user.dart';
 
 class Auth {
-
   static Future<String> signIn(String email, String password) async {
     final auth = FirebaseAuth.instance;
-    final result = await auth.signInWithEmailAndPassword(email: email, password: password);
+    final result =
+        await auth.signInWithEmailAndPassword(email: email, password: password);
     return result.user.uid;
   }
 
@@ -110,6 +110,4 @@ class Auth {
       return null;
     }
   }
-
-  
 }

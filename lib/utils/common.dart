@@ -27,7 +27,7 @@ class Common {
             FlatButton(
               child: Text("Não"),
               onPressed: () {
-                Navigator.of(context).pop();
+                Navigator.pop(context);
               },
             ),
           ],

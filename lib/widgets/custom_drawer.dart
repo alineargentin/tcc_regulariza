@@ -3,7 +3,6 @@ import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/utils/common.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
-import 'package:tcc_regulariza/views/login.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
 import 'package:tcc_regulariza/views/termo.dart';
@@ -73,13 +72,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
             leading: Icon(Icons.exit_to_app),
             title: Text('Sair'),
             onTap: () async {
-              final result = await Common.showQuitDialog(context);
-              if (result) {
-                Auth.signOut();
-                Navigator.pushReplacementNamed(context, Login.routeName);
-              } else {
-                Navigator.pop(context);
-              }
+              await Common.showQuitDialog(context);
             },
           ),
         ],
