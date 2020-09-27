@@ -22,7 +22,6 @@ class ChatMessageListItem extends StatelessWidget {
       child: Container(
         color: Colors.yellow,
         width: 100.0,
-        height: 100.0,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
@@ -35,7 +34,7 @@ class ChatMessageListItem extends StatelessWidget {
                   chatMessage.text +
                       "\n" +
                       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now()),
-                      // DESAFIO 2 - Adicionar data/hora de recebimento ou envio das mensagens (DateTime class)
+                  // DESAFIO 2 - Adicionar data/hora de recebimento ou envio das mensagens (DateTime class)
                   textAlign: TextAlign.right),
             ),
           ),
@@ -54,7 +53,6 @@ class ChatMessageListItem extends StatelessWidget {
       child: Container(
         color: Colors.amberAccent,
         width: 100.0,
-        height: 100.0,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
@@ -67,7 +65,7 @@ class ChatMessageListItem extends StatelessWidget {
                   chatMessage.text +
                       "\n" +
                       DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now()),
-                      // DESAFIO 2 - Adicionar data/hora de recebimento ou envio das mensagens (DateTime class)
+                  // DESAFIO 2 - Adicionar data/hora de recebimento ou envio das mensagens (DateTime class)
                   textAlign: TextAlign.left),
             ),
           ),

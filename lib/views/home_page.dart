@@ -4,12 +4,10 @@ import 'package:tcc_regulariza/widgets/chat_message_list_item.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:tcc_regulariza/widgets/custom_drawer.dart';
 
-
 class HomePage extends StatefulWidget {
   static const String routeName = '/home';
   @override
   _HomePageState createState() => _HomePageState();
-
 }
 
 class _HomePageState extends State<HomePage> {
@@ -29,12 +27,22 @@ class _HomePageState extends State<HomePage> {
       appBar: new AppBar(
         title: Text('Chatbot - Cartório'),
       ),
-      body: Column(
-        children: <Widget>[
-          _buildList(),
-          Divider(height: 1.0),
-          _buildUserInput(),
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/logo_cartorio_facil.png"),
+            fit: BoxFit.contain,
+            colorFilter: new ColorFilter.mode(
+                Colors.white.withOpacity(0.3), BlendMode.dstATop),
+          ),
+        ),
+        child: Column(
+          children: <Widget>[
+            _buildList(),
+            Divider(height: 1.0),
+            _buildUserInput(),
+          ],
+        ),
       ),
     );
   }
@@ -107,7 +115,6 @@ class _HomePageState extends State<HomePage> {
             border: new OutlineInputBorder(
               borderRadius: const BorderRadius.all(
                 const Radius.circular(50.0),
-              
               ),
             ),
             filled: true,

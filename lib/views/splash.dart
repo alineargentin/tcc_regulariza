@@ -30,10 +30,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.yellowAccent,
+      backgroundColor: Colors.amberAccent,
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
+          Center(child: Text('Cartório Fácil', textScaleFactor: 2)),
           buildLogo(),
         ],
       ),
@@ -41,6 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Widget buildLogo() {
-    return Center(child: Image.asset("assets/feather_pen.jpg"));
+    return Center(child: Image.asset("assets/logo_cartorio_facil.png"));
   }
 }

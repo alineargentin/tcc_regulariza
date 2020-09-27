@@ -9,7 +9,7 @@
     <application
         android:name="io.flutter.app.FlutterApplication"
         android:label="Cartório Fácil"
-        android:icon="@drawable/feather_pen">
+        android:icon="@drawable/logo_cartorio_facil">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
