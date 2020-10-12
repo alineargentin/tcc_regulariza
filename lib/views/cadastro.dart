@@ -248,7 +248,11 @@ class _CadastroState extends State<Cadastro> {
   Widget _showSignUpButton() {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 32.0),
-      child: RaisedButton(child: Text('Cadastrar'), onPressed: _signUp),
+      child: RaisedButton(
+        child: Text('Cadastrar'),
+        color: Colors.amberAccent,
+        onPressed: _signUp,
+      ),
     );
   }
 }
