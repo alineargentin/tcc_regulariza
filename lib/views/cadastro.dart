@@ -29,24 +29,31 @@ class _CadastroState extends State<Cadastro> {
   final _confirmarsenhaFocusNode = new FocusNode();
   final _telefoneFocusNode = new FocusNode();
 
+  final _formKey = new GlobalKey<FormState>();
+  bool _obscurePassword = true;
+  bool _obscureConfirmation = true;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
           padding: EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: <Widget>[
-              _showNomeTextField(),
-              //_showRgTextField(),
-              //_showCpfTextField(),
-              _showEmailTextField(),
-              _showSenhaTextField(),
-              _showConfirmarsenhaTextField(),
-              _showTelefoneTextField(),
-              _showSignUpButton(),
-            ],
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: <Widget>[
+                _showNomeTextField(),
+                //_showRgTextField(),
+                //_showCpfTextField(),
+                _showEmailTextField(),
+                _showSenhaTextField(),
+                _showConfirmarsenhaTextField(),
+                _showTelefoneTextField(),
+                _showSignUpButton(),
+              ],
+            ),
           ),
         ),
       ),
@@ -55,7 +62,7 @@ class _CadastroState extends State<Cadastro> {
 
   // Componentes para a criação da tela de cadastro
   Widget _showNomeTextField() {
-    return TextField(
+    return TextFormField(
       controller: _nomeController,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
@@ -65,6 +72,9 @@ class _CadastroState extends State<Cadastro> {
       textInputAction: TextInputAction.next,
       autofocus: true,
       focusNode: _nomeFocusNode,
+      validator: (String value) {
+        return value.isEmpty ? 'O nome é obrigatório' : null;
+      },
       onEditingComplete: () =>
           FocusScope.of(context).requestFocus(_emailFocusNode),
     );
@@ -116,6 +126,9 @@ class _CadastroState extends State<Cadastro> {
       ),
       textInputAction: TextInputAction.next,
       focusNode: _emailFocusNode,
+      validator: (String value) {
+        return value.isEmpty ? 'O e-mail é obrigatório' : null;
+      },
       onEditingComplete: () =>
           // ao terminar de editar, move o foco para o próximo campo
           FocusScope.of(context).requestFocus(_senhaFocusNode),
@@ -126,10 +139,25 @@ class _CadastroState extends State<Cadastro> {
     return TextFormField(
       controller: _senhaController,
       keyboardType: TextInputType.text,
-      obscureText: true,
+      obscureText: _obscurePassword,
+      validator: (String value) {
+        return value.length < 6
+            ? 'A senha deve conter no mínimo 6 caracteres'
+            : null;
+      },
+      maxLength: 12,
       decoration: InputDecoration(
         hintText: 'Digite uma senha',
         prefixIcon: Icon(Icons.vpn_key),
+        suffixIcon: IconButton(
+          icon:
+              Icon(_obscurePassword ? Icons.visibility_off : Icons.visibility),
+          onPressed: () {
+            setState(() {
+              _obscurePassword = !_obscurePassword;
+            });
+          },
+        ),
       ),
       textInputAction: TextInputAction.next,
       focusNode: _senhaFocusNode,
@@ -142,13 +170,27 @@ class _CadastroState extends State<Cadastro> {
     return TextFormField(
         controller: _confirmarsenhaController,
         keyboardType: TextInputType.text,
-        obscureText: true,
+        obscureText: _obscureConfirmation,
         decoration: InputDecoration(
           hintText: 'Confirmar sua senha',
           prefixIcon: Icon(Icons.vpn_key),
+          suffixIcon: IconButton(
+            icon: Icon(
+                _obscureConfirmation ? Icons.visibility_off : Icons.visibility),
+            onPressed: () {
+              setState(() {
+                _obscureConfirmation = !_obscureConfirmation;
+              });
+            },
+          ),
         ),
         textInputAction: TextInputAction.next,
         focusNode: _confirmarsenhaFocusNode,
+        validator: (String value) {
+          return _senhaController.text != value
+              ? 'A confirmação deve ser igual à senha'
+              : null;
+        },
         onEditingComplete: () =>
             FocusScope.of(context).requestFocus(_telefoneFocusNode));
   }
@@ -167,17 +209,19 @@ class _CadastroState extends State<Cadastro> {
   }
 
   Future _signUp() async {
-    final email = _emailController.text;
-    final password = _senhaController.text;
-    await Auth.signUp(email, password)
-        .then(_onResultSignUpSuccess)
-        .catchError((error) {
-      Flushbar(
-        title: 'Erro',
-        message: error.message,
-        duration: Duration(seconds: 3),
-      )..show(context);
-    });
+    if (_formKey.currentState.validate()) {
+      final email = _emailController.text;
+      final password = _senhaController.text;
+      await Auth.signUp(email, password)
+          .then(_onResultSignUpSuccess)
+          .catchError((error) {
+        Flushbar(
+          title: 'Erro',
+          message: error.message,
+          duration: Duration(seconds: 3),
+        )..show(context);
+      });
+    }
   }
 
   void _onResultSignUpSuccess(String userId) {
@@ -187,6 +231,7 @@ class _CadastroState extends State<Cadastro> {
     //final cpf = _cpfController.text;
     //final rg = _rgController.text;
     final user = User(userId: userId, name: name, email: email, phone: phone);
+    Auth.storeUserLocal(user);
     Auth.addUser(user).then(_onResultAddUser);
   }
 

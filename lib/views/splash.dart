@@ -34,14 +34,31 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Center(child: Text('Cartório Fácil', textScaleFactor: 2)),
+          buildTitle(),
           buildLogo(),
         ],
       ),
     );
   }
 
+  Widget buildTitle() {
+    return Center(
+      child: Text(
+        'Cartório Fácil',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 40,
+        ),
+      ),
+    );
+  }
+
   Widget buildLogo() {
-    return Center(child: Image.asset("assets/logo_cartorio_facil.png"));
+    return Hero(
+      tag: 'appLogo',
+      child: Center(
+        child: Image.asset("assets/logo_cartorio_facil.png"),
+      ),
+    );
   }
 }

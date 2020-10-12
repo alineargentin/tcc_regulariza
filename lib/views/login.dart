@@ -1,6 +1,7 @@
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/views/forgot_password.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
@@ -19,6 +20,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation = 2.0;
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -26,6 +28,8 @@ class _LoginState extends State<Login> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              _showTitle(),
+              _showLogo(),
               _showEmailTextField(),
               _showPasswordTextField(),
               _showSignInButton(),
@@ -35,6 +39,29 @@ class _LoginState extends State<Login> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget _showTitle() {
+    return Center(
+        child: Text(
+      'Cartório Fácil',
+      style: TextStyle(
+        color: Colors.amber,
+        fontWeight: FontWeight.bold,
+        fontSize: 30,
+      ),
+    ));
+  }
+
+  Widget _showLogo() {
+    return Hero(
+      tag: 'appLogo',
+      child: Center(
+          child: Image.asset(
+        "assets/logo_cartorio_facil.png",
+        width: 150,
+      )),
     );
   }
 
