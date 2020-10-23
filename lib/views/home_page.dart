@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:tcc_regulariza/models/chat_message.dart';
 import 'package:tcc_regulariza/widgets/chat_message_list_item.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
@@ -94,14 +95,19 @@ class _HomePageState extends State<HomePage> {
 
   // Adiciona uma mensagem na lista de mensagens
   void _addMessage({String name, String text, ChatMessageType type}) {
-    var message = ChatMessage(text: text, name: name, type: type);
+    var message = ChatMessage(
+        text:
+            // acrescenta hora ao início da mensagem
+            DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now()) + "\n" + text,
+        name: name,
+        type: type);
     setState(() {
       _messageList.insert(0, message);
     });
 
     if (type == ChatMessageType.sent) {
       // Envia a mensagem para o chatbot e aguarda sua resposta
-      _dialogFlowRequest(query: message.text);
+      _dialogFlowRequest(query: text);
     }
   }
 

@@ -16,6 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // faz aplicação ficar em tela cheia durante carregamento da Splash
     SystemChrome.setEnabledSystemUIOverlays([]);
     Future.delayed(Duration(seconds: 2)).then((_) async {
       var userLocal = await Auth.getUserLocal();
@@ -25,6 +26,13 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacementNamed(context, HomePage.routeName);
       }
     });
+  }
+
+  @override
+  void dispose() {
+    // volta aplicação para modo normal
+    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+    super.dispose();
   }
 
   @override
