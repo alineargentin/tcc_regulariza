@@ -21,6 +21,7 @@ class ChatMessageListItem extends StatelessWidget {
       child: Container(
         color: Colors.yellow,
         width: 100.0,
+        height: chatMessage.height,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
@@ -47,6 +48,7 @@ class ChatMessageListItem extends StatelessWidget {
       child: Container(
         color: Colors.amberAccent,
         width: 100.0,
+        height: chatMessage.height,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
@@ -55,7 +57,16 @@ class ChatMessageListItem extends StatelessWidget {
               leading:
                   CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
               title: Text(chatMessage.name, textAlign: TextAlign.left),
-              subtitle: Text(chatMessage.text, textAlign: TextAlign.left),
+              subtitle: Text(
+                  // se a altura é nula, exibe todo o texto.
+                  // se a altura não é nula, exibe apenas o início do texto,
+                  // seguido da opção 'Ver mais'
+                  chatMessage.height == null
+                      ? chatMessage.text
+                      : chatMessage.text.substring(
+                              0, (0.7 * chatMessage.height).round()) +
+                          "...\n\nVer mais",
+                  textAlign: TextAlign.left),
             ),
           ),
         ),

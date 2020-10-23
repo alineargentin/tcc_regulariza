@@ -15,6 +15,9 @@ class _HomePageState extends State<HomePage> {
   final _messageList = <ChatMessage>[];
   final _controllerText = new TextEditingController();
 
+  /// Tamanho máximo da altura de um item da lista colapsado
+  static const double CHAT_ITEM_MAX_HEIGHT = 200;
+
   @override
   void dispose() {
     super.dispose();
@@ -54,8 +57,18 @@ class _HomePageState extends State<HomePage> {
       child: ListView.builder(
         padding: EdgeInsets.all(8.0),
         reverse: true,
-        itemBuilder: (_, int index) =>
-            ChatMessageListItem(chatMessage: _messageList[index]),
+        itemBuilder: (context, index) {
+          return GestureDetector(
+              child: ChatMessageListItem(chatMessage: _messageList[index]),
+              onTap: () {
+                setState(() {
+                  // clicar em um elemento da lista faz com que a altura seja
+                  // nula, para cobrir o caso em que o texto é grande e a opção
+                  // 'Ver mais' aparece
+                  _messageList[index].height = null;
+                });
+              });
+        },
         itemCount: _messageList.length,
       ),
     );
@@ -80,11 +93,17 @@ class _HomePageState extends State<HomePage> {
       _messageList.removeAt(0);
     });
 
+    double height;
+    if (response.getMessage().length > CHAT_ITEM_MAX_HEIGHT) {
+      // se o tamanho da resposta for grande, limita a altura da mensagem
+      height = CHAT_ITEM_MAX_HEIGHT;
+    }
     // adiciona a mensagem com a resposta do DialogFlow
     _addMessage(
         name: 'Cartorário',
         text: response.getMessage() ?? '',
-        type: ChatMessageType.received);
+        type: ChatMessageType.received,
+        height: height);
   }
 
   // Envia uma mensagem com o padrão a direita
@@ -94,13 +113,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   // Adiciona uma mensagem na lista de mensagens
-  void _addMessage({String name, String text, ChatMessageType type}) {
+  void _addMessage(
+      {String name, String text, ChatMessageType type, double height}) {
     var message = ChatMessage(
         text:
             // acrescenta hora ao início da mensagem
             DateFormat("dd/MM/yyyy HH:mm").format(DateTime.now()) + "\n" + text,
         name: name,
-        type: type);
+        type: type,
+        height: height);
     setState(() {
       _messageList.insert(0, message);
     });
