@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tcc_regulariza/models/user.dart';
 import 'package:tcc_regulariza/service/auth.dart';
 import 'package:tcc_regulariza/utils/common.dart';
+import 'package:tcc_regulariza/views/agendamento.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
@@ -44,7 +45,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.person),
+            leading: Icon(Icons.message),
             title: Text('Chatbot'),
             onTap: () {
               Navigator.pop(context);
@@ -53,11 +54,20 @@ class _CustomDrawerState extends State<CustomDrawer> {
           ),
           Divider(),
           ListTile(
-            leading: Icon(Icons.info),
+            leading: Icon(Icons.calendar_today),
             title: Text('Vencimento de documentos'),
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushReplacementNamed(Vencimento.routeName);
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.date_range),
+            title: Text('Agendamento'),
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed(Agendamento.routeName);
             },
           ),
           Divider(),

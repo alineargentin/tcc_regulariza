@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tcc_regulariza/views/agendamento.dart';
 import 'package:tcc_regulariza/views/cadastro.dart';
 import 'package:tcc_regulariza/views/forgot_password.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
@@ -29,9 +30,9 @@ class MyApp extends StatelessWidget {
         HomePage.routeName: (context) => new HomePage(),
         ForgotPassword.routeName: (context) => new ForgotPassword(),
         Vencimento.routeName: (context) => new Vencimento(),
+        Agendamento.routeName: (context) => new Agendamento(),
         Termo.routeName: (context) => new Termo(),
         Sobre.routeName: (context) => new Sobre()
-
       },
     );
   }
