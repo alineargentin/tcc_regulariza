@@ -25,27 +25,46 @@ class _VencimentoState extends State<Vencimento> {
   }
 
   Widget _buildBody() {
-    return Table(
+    return SingleChildScrollView(
+        child: Table(
       defaultColumnWidth: IntrinsicColumnWidth(),
       border: TableBorder.all(),
       children: [
         _criarLinhaTable("Documento, Período"),
-        _criarLinhaTable("RG, 10 Anos "),
-        _criarLinhaTable("CPF, Indeterminado"),
-        _criarLinhaTable("CNH, 5 Anos "),
-        _criarLinhaTable("Certidão de nascimento, Indeterminado"),
+        _criarLinhaTable(
+            "Passaporte para crianças de até 1 ano de idade incompleto, 1 ano"),
+        _criarLinhaTable(
+            "Passaporte para crianças de 1 a 2 anos incompletos de idade , 2 anos"),
+        _criarLinhaTable(
+            "Passaporte para crianças de 2 a 3 anos incompletos de idade, 3 anos"),
+        _criarLinhaTable(
+            "Passaporte para crianças de 3 a 4 anos incompletos de idade, 4 anos"),
+        _criarLinhaTable("Passaporte 4 a 18 anos de idade incompletos, 5 anos"),
+        _criarLinhaTable(
+            "Passaporte para maiores de 18 anos de idade, 10 anos"),
+        _criarLinhaTable("CNH - idade até 50 anos, 10 anos"),
+        _criarLinhaTable("CNH - idade até 70 anos, 5 anos"),
+        _criarLinhaTable("CNH - mais que 70 anos, 3 anos"),
+        _criarLinhaTable(
+            "CNH para aqueles que atuam profissionalmente com veiculo, 5 anos"),
+        _criarLinhaTable(
+            "RG (Não tem prazo - algumas instituições não aceitam documento com prazo maior que este), 10 anos"),
+        _criarLinhaTable("CPF, 10 anos"),
+        _criarLinhaTable("Certidão de Nascimento (atualizada), 12 meses"),
+        _criarLinhaTable("Certidão de Casamento (atualizada), 12 meses"),
       ],
-    );
+    ));
   }
 
   _criarLinhaTable(String listaNomes) {
     return TableRow(
-      children: listaNomes.split(',').map((name) {
+      children: listaNomes.split(', ').map((name) {
         return Container(
           alignment: Alignment.center,
           child: Text(
             name,
             style: TextStyle(fontSize: 20.0),
+            textAlign: TextAlign.center,
           ),
           padding: EdgeInsets.all(8.0),
         );
