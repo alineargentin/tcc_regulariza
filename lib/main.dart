@@ -7,7 +7,6 @@ import 'package:tcc_regulariza/views/login.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
 import 'package:tcc_regulariza/views/splash.dart';
-import 'package:tcc_regulariza/views/termo.dart';
 import 'package:tcc_regulariza/views/vencimentos_documentos.dart';
 
 void main() {
@@ -31,7 +30,6 @@ class MyApp extends StatelessWidget {
         ForgotPassword.routeName: (context) => new ForgotPassword(),
         Vencimento.routeName: (context) => new Vencimento(),
         Agendamento.routeName: (context) => new Agendamento(),
-        Termo.routeName: (context) => new Termo(),
         Sobre.routeName: (context) => new Sobre()
       },
     );

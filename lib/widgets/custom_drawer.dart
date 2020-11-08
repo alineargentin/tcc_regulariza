@@ -6,7 +6,6 @@ import 'package:tcc_regulariza/views/agendamento.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
-import 'package:tcc_regulariza/views/termo.dart';
 import 'package:tcc_regulariza/views/vencimentos_documentos.dart';
 
 class CustomDrawer extends StatefulWidget {
@@ -77,14 +76,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushReplacementNamed(Sobre.routeName);
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Termos de uso'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context).pushReplacementNamed(Termo.routeName);
             },
           ),
           Divider(),
