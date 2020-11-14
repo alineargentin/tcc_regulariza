@@ -6,7 +6,6 @@ import 'package:tcc_regulariza/views/agendamento.dart';
 import 'package:tcc_regulariza/views/home_page.dart';
 import 'package:tcc_regulariza/views/perfil.dart';
 import 'package:tcc_regulariza/views/sobre.dart';
-import 'package:tcc_regulariza/views/vencimentos_documentos.dart';
 
 class CustomDrawer extends StatefulWidget {
   @override
@@ -49,15 +48,6 @@ class _CustomDrawerState extends State<CustomDrawer> {
             onTap: () {
               Navigator.pop(context);
               Navigator.of(context).pushReplacementNamed(HomePage.routeName);
-            },
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.calendar_today),
-            title: Text('Vencimento de documentos'),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.of(context).pushReplacementNamed(Vencimento.routeName);
             },
           ),
           Divider(),

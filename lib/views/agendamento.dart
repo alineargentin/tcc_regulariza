@@ -59,7 +59,7 @@ class _AgendamentoState extends State<Agendamento> {
               child: Text(
                 'Confirmar agendamento',
               ),
-              color: Colors.grey,
+              color: Colors.amberAccent,
               onPressed: () {
                 //log('add event pressed');
                 calendarClient.insert(
